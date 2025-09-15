@@ -1,0 +1,11 @@
+{
+  "name": "clinicsf-frontapp",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "build-all": "concurrently \"npm run build --prefix mf-home\" \"npm run build --prefix mf-login\" \"npm run build --prefix mf-web-main\" \"npm run build --prefix mf-web-menu\" \"npm run build --prefix mf-web-header\" \"npm run build --prefix mf-web-footer\" \"npm run build --prefix mf-datospaciente\" \"npm run build --prefix mf-bases\" \"npm run build --prefix mf-atencion\""
+  },
+   "keywords": [],
+  "author": "LuwyDyro",
+  "license": "ISC"
+}

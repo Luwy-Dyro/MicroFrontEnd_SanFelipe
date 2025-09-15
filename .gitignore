@@ -1,0 +1,25 @@
+# Node/Vite
+node_modules/
+dist/
+.vite/
+.turbo/
+coverage/
+*.log
+
+# OS/IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Env (no subas secretos)
+.env
+.env.local
+.env.*.local
+apps/*/.env
+apps/*/.env.local
+apps/*/.env.*.local
+
+# Permite ejemplos
+!.env.example
+!apps/*/.env.example
