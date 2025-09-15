@@ -56,7 +56,7 @@ MF
 npm run serve:dist
 ````
 
-## Correr 
+## Env
 ````
 .env.example 
 
