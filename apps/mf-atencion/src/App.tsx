@@ -61,14 +61,13 @@ export default function AtencionApp() {
           </section>
 
           <section className="row-start-2 col-start-2 flex flex-col gap-4">
-            <div className="bg-base-100 rounded-box shadow">
+          
               <Suspense fallback={<div className="p-6">Cargando datos del paciente…</div>}>
                 {dni
                   ? <DatosApp nroDocumento={dni} />
                   : <div className="p-6 text-sm opacity-70">Resolviendo DNI…</div>}
               </Suspense>
-            </div>
-
+      
             <div className="flex-1 bg-base-100 border rounded-box shadow overflow-auto">
               <BasesApp tipoAtencion={tipoAtencion}/>
             </div>

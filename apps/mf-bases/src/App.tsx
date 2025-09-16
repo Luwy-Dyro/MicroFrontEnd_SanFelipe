@@ -2,25 +2,26 @@ import { useEffect, useMemo, useState } from 'react';
 import cssHref from './index.css?url';
 import { ensureStyle } from './style-loader';
 import { fetchOpcionesPorAtencion, type Seccion } from './api';
+import DiagAtencion from './DiagAtencion'; 
 
 type Props = { tipoAtencion: string };
 
-function iconFor(title: string) {
-  const t = title.toLowerCase();
-  if (t.includes('anamnesis') || t.includes('examen')) return 'fa-notes-medical';
-  if (t.includes('diagn')) return 'fa-stethoscope';
-  if (t.includes('trat')) return 'fa-syringe';
-  if (t.includes('lab')) return 'fa-vial';
-  if (t.includes('imagen')) return 'fa-x-ray';
-  if (t.includes('resultado')) return 'fa-file-waveform';
-  if (t.includes('interconsulta')) return 'fa-user-doctor';
-  if (t.includes('proced')) return 'fa-briefcase-medical';
-  if (t.includes('patolog')) return 'fa-microscope';
-  return 'fa-folder-open';
-}
-
 export default function BasesApp({ tipoAtencion }: Props) {
   ensureStyle(new URL(cssHref, import.meta.url).toString());
+
+  function iconFor(title: string) {
+    const t = title.toLowerCase();
+    if (t.includes('anamnesis') || t.includes('examen')) return 'fa-notes-medical';
+    if (t.includes('diagn')) return 'fa-stethoscope';
+    if (t.includes('trat')) return 'fa-syringe';
+    if (t.includes('lab')) return 'fa-vial';
+    if (t.includes('imagen')) return 'fa-x-ray';
+    if (t.includes('resultado')) return 'fa-file-waveform';
+    if (t.includes('interconsulta')) return 'fa-user-doctor';
+    if (t.includes('proced')) return 'fa-briefcase-medical';
+    if (t.includes('patolog')) return 'fa-microscope';
+    return 'fa-folder-open';
+  }
 
   const [ops, setOps] = useState<Seccion[]>([]);
   const [loading, setLoading] = useState(false);
@@ -51,7 +52,9 @@ export default function BasesApp({ tipoAtencion }: Props) {
 
       {loading && (
         <div className="space-y-2">
-          {[...Array(3)].map((_, i) => <div key={i} className="skeleton h-12 w-full" />)}
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="skeleton h-12 w-full" />
+          ))}
         </div>
       )}
 
@@ -76,8 +79,12 @@ export default function BasesApp({ tipoAtencion }: Props) {
                 <i className={`fa-solid ${iconFor(it.title)} text-base`} />
                 <span>{it.title}</span>
               </div>
+
               <div className="collapse-content bg-base-100 text-base-content rounded-b-lg">
-                <div className="p-4 text-sm opacity-70">Sin registros.</div>
+                <div className="p-4">
+                  {/* Se renderiza SIEMPRE el mismo componente en todos los acordeones */}
+                  <DiagAtencion  tipoAtencion={tipoAtencion} />
+                </div>
               </div>
             </div>
           );

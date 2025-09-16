@@ -7,9 +7,9 @@ export default defineConfig({
    resolve: {
     dedupe: ['react', 'react-dom', 'react-router', 'react-router-dom'], 
   },
-    optimizeDeps: {
-    exclude: ['react','react-dom','react-router','react-router-dom'],
-  },
+  //   optimizeDeps: {
+  //   exclude: ['react','react-dom','react-router','react-router-dom'],
+  // },
   plugins: [
     react(),
     tailwindcss(),

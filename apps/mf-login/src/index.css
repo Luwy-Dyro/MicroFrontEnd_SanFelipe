@@ -1,5 +1,8 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "tailwindcss";
-
+@plugin "daisyui" {
+   themes: light --default
+ }
 
 @theme {
   --color-csf-verde: #88BD24;
@@ -7,58 +10,31 @@
   
 }
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+ .container {
+    width: 100%;
 
-  color-scheme: light dark;
-  color: rgba(36, 36, 36, 0.87);
-  background-color: #fff;
+  }
+    @media (width >= 40rem) {
+      
+       .container{
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+         max-width: 40rem;
+       }
+    }
+    @media (width >= 48rem) {
+        .container{max-width: 48rem;}
+    }
+    @media (width >= 64rem) {
+       .container{max-width: 64rem};
+    }
+    @media (width >= 80rem) {
+        .container{max-width: 80rem};
+    }
+    @media (width >= 90rem) {
+       .container{max-width: 90rem};
+    }
 .back_body{
-  background-image: url('https://citaweb.clinicasanfelipe.com/CSF_CITAS/Resources/Images/Login/fondo_rsf.jpg');
+  background-image: url('./assets/images/bg-land.jpg');
   background-size: cover;
 }
   
@@ -66,15 +42,3 @@ button:focus-visible {
   background-image: linear-gradient(90deg, #17439d 0%, #2d67bd 100%);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}

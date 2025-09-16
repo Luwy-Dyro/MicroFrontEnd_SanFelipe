@@ -7,6 +7,29 @@ export async function fetchPaciente(nroDocumento: string): Promise<PacienteDTO> 
   return data;
 }
 
+export async function fetchAlergias(nroDocumento: string): Promise<AlergiasDTO | null> {
+  const { data } = await api.get('/TestFrontEnd/alergiasxDni', {
+    params: { nroDocumento },
+  });
+  return data ?? null;
+}
+
+
+export async function fetchPrincipiosActivos(): Promise<PrincipioActivo[]> {
+  const { data } = await api.get('/TestFrontEnd/principiosActivos');
+  return Array.isArray(data) ? data : [];
+}
+
+
+
+
+export type PrincipioActivo = { id: number; descripcion: string };
+export type AlergiasDTO = {
+  declaratoria?: boolean;
+  principios?: { id: number; descripcion: string }[];
+  alimentos?: string;
+  otros?: string;
+};
 
 export type PacienteDTO = {
   nombres?: string;

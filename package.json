@@ -1,11 +1,18 @@
 {
   "name": "clinicsf-frontapp",
   "private": true,
-  "workspaces": ["apps/*", "packages/*"],
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "build-all": "concurrently \"npm run build --prefix mf-home\" \"npm run build --prefix mf-login\" \"npm run build --prefix mf-web-main\" \"npm run build --prefix mf-web-menu\" \"npm run build --prefix mf-web-header\" \"npm run build --prefix mf-web-footer\" \"npm run build --prefix mf-datospaciente\" \"npm run build --prefix mf-bases\" \"npm run build --prefix mf-atencion\""
+    "build-all": "concurrently \"npm --prefix ./apps/mf-home run build\" \"npm --prefix ./apps/mf-login run build\" \"npm --prefix ./apps/mf-web-main run build\" \"npm --prefix ./apps/mf-web-menu run build\" \"npm --prefix ./apps/mf-web-header run build\" \"npm --prefix ./apps/mf-web-footer run build\" \"npm --prefix ./apps/mf-datospaciente run build\" \"npm --prefix ./apps/mf-bases run build\" \"npm --prefix ./apps/mf-atencion run build\"",
+     "serve-all": "concurrently \"npm --prefix ./apps/mf-home run serve:dist\" \"npm --prefix ./apps/mf-login run serve:dist\" \"npm --prefix ./apps/mf-web-main run serve:dist\" \"npm --prefix ./apps/mf-web-menu run serve:dist\" \"npm --prefix ./apps/mf-web-header run serve:dist\" \"npm --prefix ./apps/mf-web-footer run serve:dist\" \"npm --prefix ./apps/mf-datospaciente run serve:dist\" \"npm --prefix ./apps/mf-bases run serve:dist\" \"npm --prefix ./apps/mf-atencion run serve:dist\""
   },
-   "keywords": [],
+  "keywords": [],
   "author": "LuwyDyro",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
