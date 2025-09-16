@@ -3,3 +3,7 @@
 @plugin "daisyui" {
    themes: light --default
  }
+ @theme {
+  --color-csf-verde: #88BD24;
+  --color-csf-azul: #164899;
+}

@@ -45,10 +45,10 @@ export default function BasesApp({ tipoAtencion }: Props) {
   }
 
   return (
-    <div className="p-4">
-      <div className="mb-3 text-sm opacity-70">
+    <div className="mb-10">
+      {/* <div className="mb-3 text-sm opacity-70">
         Servicio: <span className="font-medium">{tipoAtencion}</span>
-      </div>
+      </div> */}
 
       {loading && (
         <div className="space-y-2">
@@ -64,11 +64,11 @@ export default function BasesApp({ tipoAtencion }: Props) {
         <div className="text-sm opacity-70">No hay opciones para este servicio.</div>
       )}
 
-      <div className="space-y-2">
+      
         {items.map((it, i) => {
           const opened = openIdx === i;
           return (
-            <div key={i} className="collapse collapse-arrow bg-primary text-primary-content rounded-lg">
+            <div key={i} className="collapse collapse-arrow bg-csf-azul text-primary-content rounded-lg mb-3">
               <input
                 type="checkbox"
                 checked={opened}
@@ -80,16 +80,15 @@ export default function BasesApp({ tipoAtencion }: Props) {
                 <span>{it.title}</span>
               </div>
 
-              <div className="collapse-content bg-base-100 text-base-content rounded-b-lg">
-                <div className="p-4">
-                  {/* Se renderiza SIEMPRE el mismo componente en todos los acordeones */}
+              <div className="collapse-content bg-white text-base-content rounded-b-lg px-0">
+                
                   <DiagAtencion  tipoAtencion={tipoAtencion} />
-                </div>
+               
               </div>
             </div>
           );
         })}
-      </div>
+    
     </div>
   );
 }

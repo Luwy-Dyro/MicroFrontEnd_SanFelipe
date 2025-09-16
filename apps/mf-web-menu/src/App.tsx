@@ -47,17 +47,11 @@ export default function MenuApp({ perfil = 'admin' }: MenuAppProps) {
   }, [perfil]);
 
   return (
-    <aside className="border p-4 min-h-0 bg-primary text-primary-content">
-      <div className="p-4 font-semibold text-lg flex items-center justify-between">
-        <span>Menú</span>
-        <button className="btn btn-ghost btn-xs text-primary-content/80">
-          <i className="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-   
+    <>
+    <aside className="flex flex-col h-full w-full p-2 min-h-0 bg-csf-azul text-primary-content">
+  
       {loading && (
-        <ul className="menu px-2 animate-pulse">
+        <ul className="menu overflow-auto py-5 animate-pulse">
           {Array.from({ length: 6 }).map((_, i) => (
             <li key={i} className="h-10 rounded-xl bg-base-100/10 mb-2" />
           ))}
@@ -65,7 +59,7 @@ export default function MenuApp({ perfil = 'admin' }: MenuAppProps) {
       )}
 
       {!loading && (
-        <ul className="menu px-2">
+        <ul className="overflow-auto py-5">
         
           {top.map((it) => (
             <Item
@@ -78,7 +72,7 @@ export default function MenuApp({ perfil = 'admin' }: MenuAppProps) {
           ))}
 
         
-          {bottom.length > 0 && <li className="divider--menu opacity-10" />}
+          {bottom.length > 0 && <li className="border-1 text-emerald-700 w-2/3 mx-auto my-3"/>}
 
        
           {bottom.map((it) => (
@@ -97,5 +91,8 @@ export default function MenuApp({ perfil = 'admin' }: MenuAppProps) {
         </ul>
       )}
     </aside>
+
+
+    </>
   );
 }

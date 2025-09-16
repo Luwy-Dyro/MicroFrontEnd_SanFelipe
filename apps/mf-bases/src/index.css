@@ -1,5 +1,41 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "tailwindcss";
 @plugin "daisyui" {
-   themes: light --default, dark --prefersdark;
+   themes: light --default;
  }
+
+ @theme {
+  --color-csf-verde: #88BD24;
+  --color-csf-azul: #164899;
+}
+
+
+.border-tl{
+    border-top-left-radius: 12px;
+}
+
+.border-tr{
+    border-top-right-radius: 12px;
+}
+
+.tb--p{
+  background-color: white;
+  transition: 0.5s ease-in-out;
+  color: gray;
+}
+.tb--p:hover{
+  background-color: #164899;
+  transition: 0.5s ease-in-out;
+    color:  #88BD24;
+}
+
+.tb--p-active{
+  color: white;
+  background-color: #164899;
+  transition: 0.5s ease-in-out;
+}
+.tb--p-active:hover{
+  background-color: #164899;
+  color:  #88BD24;
+  
+}

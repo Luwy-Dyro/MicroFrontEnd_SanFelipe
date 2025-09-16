@@ -96,7 +96,7 @@ function badgeClaseEstado(x: string) {
   const [error, setError] = useState<string | null>(null)
 
   const [q, setQ] = useState('')
-  const [tab, setTab] = useState<'SJM' | 'CAM' | 'MOL'>('SJM')
+  const [tab, setTab] = useState<'SJM' | 'CAM' | 'MOL' | 'SI'>('SJM')
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(10)
 
@@ -128,39 +128,61 @@ function badgeClaseEstado(x: string) {
   const rows = mapped.slice(start, start + pageSize)
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="  space-y-4">
     
-      <div className="join">
+    <div className="breadcrumbs text-sm">
+  <ul>
+    <li><a>Inicio</a></li>
+    <li><a>Gestión</a></li>
+    <li>Mis pacientes</li>
+  </ul>
+</div>
+
+<h1 className='text-csf-azul text-4xl font-bold my-3'>Mis Pacientes</h1>
+<p>Tu lista de pacientes agendados para el día de hoy</p>
+
+
+      <div className="w-[calc(100%-30%)] flex my-7">
         <input
-          className="input input-bordered join-item w-80"
+          className="input outline-none focus:outline-none w-full rounded-4xl border-gray-400 "
           placeholder="Buscar paciente (nombre, apellido)"
           value={q}
           onChange={e => { setQ(e.target.value); setPage(1) }}
         />
-        <button className="btn bg-csf-verde join-item">
+        <button className="btn bg-csf-verde rounded-4xl relative right-12 z-20 hover:bg-csf-azul">
           <i className="fa-solid fa-magnifying-glass text-white"></i>
         </button>
+
+        <div className='flex gap-3 justify-center items-center'>
+        <input type="checkbox" />
+        <label htmlFor="" className='text-sm whitespace-nowrap '>Por rango de fecha</label>
+
+        </div>
+
       </div>
 
  
-      <div role="tablist" className="tabs tabs-bordered">
-        <a role="tab" className={`tab ${tab==='SJM'?'tab-active':''}`} onClick={()=>setTab('SJM')}>SEDE JESÚS MARÍA</a>
-        <a role="tab" className={`tab ${tab==='CAM'?'tab-active':''}`} onClick={()=>setTab('CAM')}>SEDE CAMACHO</a>
-        <a role="tab" className={`tab ${tab==='MOL'?'tab-active':''}`} onClick={()=>setTab('MOL')}>SEDE LA MOLINA</a>
+      <div role="tablist" className="tabs tabs-bordered grid grid-cols-4 grid-rows-1 mb-3">
+        <a role="tab" className={`tab tb--p w-auto border-tl ${tab==='SJM'?'tab-active tb--p-active':''}`} onClick={()=>setTab('SJM')}>SEDE JESÚS MARÍA</a>
+        <a role="tab" className={`tab tb--p w-auto  ${tab==='CAM'?'tab-active tb--p-active':''}`} onClick={()=>setTab('CAM')}>SEDE CAMACHO</a>
+        <a role="tab" className={`tab tb--p w-auto  ${tab==='MOL'?'tab-active tb--p-active':''}`} onClick={()=>setTab('MOL')}>SEDE LA MOLINA</a>
+        <a role="tab" className={`tab tb--p w-auto border-tr ${tab==='SI'?'tab-active tb--p-active':''}`} onClick={()=>setTab('SI')}>SEDE SAN ISIDRO</a>
       </div>
 
+
+<div role="tablist" className="tabs tabs-bordered grid grid-cols-6 grid-rows-1  mb-6">
+    <button className="tb--p w-auto cursor-pointer py-3 tb--p-active">  Todos  </button>
+    <button className="tb--p w-auto cursor-pointer py-3 ">  Reservados  </button>
+    <button className="tb--p w-auto cursor-pointer py-3 ">  En espera  </button>
+    <button className="tb--p w-auto cursor-pointer py-3 ">  En Atención  </button>
+    <button className="tb--p w-auto cursor-pointer py-3 ">  Atendidos  </button>
+    <button className="tb--p w-auto cursor-pointer py-3 ">  No llegó  </button>
+</div>
      
-      <div className="flex flex-wrap gap-2 text-sm">
-        <span className="badge badge-info">Reservados</span>
-        <span className="badge badge-warning">En espera</span>
-        <span className="badge badge-accent">En atención</span>
-        <span className="badge badge-success">Atendidos</span>
-        <span className="badge badge-error">No llegó</span>
-      </div>
+   
+      <div className="bg-base-100 rounded-box shadow p-2 mb-8">
 
-      <div className="bg-base-100 rounded-box shadow p-2">
-
-        <div className="flex items-center justify-between px-2 py-2">
+        <div className="flex items-center justify-between px-2 py-2 my-4">
           <div className="text-sm opacity-70">
             {loading ? 'Cargando…' : `Mostrando ${rows.length} de ${total}`}
             {error && <span className="text-error ml-2">Error al listar· {error}</span>}
@@ -171,7 +193,7 @@ function badgeClaseEstado(x: string) {
               <button className="btn btn-sm join-item" disabled>{pageClamped}</button>
               <button className="btn btn-sm join-item" disabled={pageClamped>=pages} onClick={()=>setPage(p=>Math.min(pages,p+1))}>»</button>
             </div>
-            <select className="select select-sm w-24"
+            <select className="select select-sm w-24  outline-none focus:outline-none border-gray-400 "
               value={pageSize}
               onChange={e=>{ setPageSize(Number(e.target.value)); setPage(1) }}>
               {[10,20,50].map(n => <option key={n} value={n}>{n}</option>)}
@@ -180,8 +202,8 @@ function badgeClaseEstado(x: string) {
         </div>
 
 
-        <div className="overflow-x-auto">
-          <table className="table table-sm">
+        <div className="overflow-x-auto ">
+          <table className="table table-xs  table-pin-rows table-pin-cols">
             <thead>
               <tr>
                 <th>Atención</th>
@@ -189,8 +211,8 @@ function badgeClaseEstado(x: string) {
                 <th>Nombres y Apellidos</th>
                 <th>Edad</th>
                 <th>Fecha cita</th>
-                <th>Hora cita</th>
-                <th>Hora de llegada</th>
+    
+                <th>Llegada</th>
                 <th>Tipo de atención</th>
                 <th>Estado</th>
                 <th>Historial</th>
@@ -208,7 +230,7 @@ function badgeClaseEstado(x: string) {
                   <td>{e.nombres}</td>
                   <td>{e.edad}</td>
                   <td>{e.fechaCita}</td>
-                  <td>{e.horaCita}</td>
+          
                   <td>{e.horaLlegada}</td>
                   <td><span className={badgeClaseTipo(e.tipoAtencion)}>{e.tipoAtencion}</span></td>
                   <td><span className={"text-xs! whitespace-nowrap " + badgeClaseEstado(e.estado)}>{labelEstado(e.estado)}</span></td>
@@ -217,7 +239,7 @@ function badgeClaseEstado(x: string) {
                     onClick={() =>  navigate(`/atencion/${e.atencion}?dni=${e.dni}&tipo=${encodeURIComponent(e.tipoAtencion)}`,
            { state: { dni: e.dni, tipoAtencion: e.tipoAtencion } })}
                     >
-                      <i className="fa-solid fa-clock-rotate-left"></i> Mostrar
+                      <i className="fa-solid fa-clock-rotate-left"></i> Ver
                     </button>
                   </td>
                 </tr>

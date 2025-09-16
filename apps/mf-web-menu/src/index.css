@@ -4,7 +4,17 @@
    themes: light --default, dark --prefersdark;
  }
 
+@theme {
+  --color-csf-verde: #88BD24;
+  --color-csf-azul: #164899;
+}
 .divider--menu{
     background: white;
     opacity: 0.4;
+}
+.btn-close {
+    --size: auto !important;
+    --btn-bg: transparent !important;
+    --btn-fg: transparent !important;
+    --btn-p: 1rem;
 }

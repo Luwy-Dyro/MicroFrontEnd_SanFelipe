@@ -12,18 +12,18 @@ export default function DiagAtencion({ tipoAtencion }: Props) {
   const [obs, setObs] = useState('');
 
   return (
-    <div className="rounded-2xl border bg-base-100 shadow-sm">
+    <div className="rounded-xl bg-base-100 shadow-sm py-4">
       {/* Tabs superiores */}
       <div className="w-full border-b rounded-t-2xl bg-base-100">
-        <div className="tabs tabs-lifted px-2">
+        <div className="tabs tabs-lifted grid grid-cols-2 grid-rows-1  ">
           <button
-            className={`tab ${tab === 'nuevo' ? 'tab-active font-semibold text-base-content' : ''}`}
+            className={`tab tb--p border-tl  ${tab === 'nuevo' ? 'tab-active tb--p-active font-semibold text-base-content' : ''}`}
             onClick={() => setTab('nuevo')}
           >
             REGISTRAR NUEVO DIAGNÓSTICO
           </button>
           <button
-            className={`tab ${tab === 'favoritos' ? 'tab-active font-semibold text-base-content' : ''}`}
+            className={`tab tb--p border-tr ${tab === 'favoritos' ? 'tab-active tb--p-active font-semibold text-base-content' : ''}`}
             onClick={() => setTab('favoritos')}
           >
             MIS FAVORITOS
@@ -33,39 +33,31 @@ export default function DiagAtencion({ tipoAtencion }: Props) {
 
       {/* Contenido de cada tab */}
       {tab === 'nuevo' ? (
-        <div className="p-5 space-y-4">
-          {/* Título búsqueda */}
+        <div className="p-8 space-y-4">
+
           <div className="flex items-center gap-2">
-            <i className="fa-regular fa-square-plus text-success text-lg" />
-            <h3 className="text-lg font-semibold">Búsqueda de diagnóstico</h3>
+            <i className="fa-regular fa-square-plus text-csf-verde text-lg" />
+            <h3 className="text-xl font-semibold text-csf-azul ">Búsqueda de diagnóstico</h3>
           </div>
 
-          {/* Buscador CIE-10 */}
-          <div className="flex items-center">
-            <div className="join w-full max-w-3xl">
-              <div className="join-item input input-bordered flex-1 flex items-center gap-2">
-                <i className="fa-solid fa-magnifying-glass opacity-60" />
-                <input
-                  value={q}
-                  onChange={(e) => setQ(e.target.value)}
-                  placeholder="Buscar por descripción o código CIE-10"
-                  className="grow outline-none bg-transparent"
-                />
-              </div>
-              <button className="join-item btn btn-success">
-                <i className="fa-solid fa-magnifying-glass" />
-              </button>
-            </div>
+   
+        <div className="w-[calc(100%-30%)] flex my-7">
+          <input className="input outline-none focus:outline-none w-full rounded-4xl border-gray-100 bg-gray-100 " placeholder="Buscar paciente (nombre, apellido)" value="" />
+          <button className="btn bg-csf-verde rounded-4xl relative right-12 z-20 hover:bg-csf-azul"><i className="fa-solid fa-magnifying-glass text-white"></i>
+          </button>
+          <div className="flex gap-3 justify-center items-center">
+            <input type="checkbox" name='search' /><label htmlFor="search" className="text-sm whitespace-nowrap ">Por rango de fecha</label></div>
+          
           </div>
 
-          {/* Subtítulo */}
+      
           <div className="text-sm">
-            <span className="font-semibold text-primary">Diagnóstico seleccionado:</span>
+            <span className="font-semibold text-csf-azul">Diagnóstico seleccionado:</span>
           </div>
 
           {/* Tabla principal */}
-          <div className="overflow-x-auto rounded-xl border">
-            <table className="table table-sm">
+          <div className="overflow-x-auto rounded-sm ">
+            <table className="table table-sm border rounded-xl border-gray-200">
               <thead className="bg-base-200">
                 <tr>
                   <th className="w-16">Fav</th>
@@ -148,13 +140,13 @@ export default function DiagAtencion({ tipoAtencion }: Props) {
                   </td>
                 </tr>
 
-                {/* Si quieres, aquí irían más filas con resultados de búsqueda */}
+            
               </tbody>
             </table>
           </div>
         </div>
       ) : (
-        /* Tab MIS FAVORITOS */
+      
         <div className="p-5">
           <div className="text-sm opacity-70">No hay favoritos aún.</div>
         </div>

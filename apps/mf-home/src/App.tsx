@@ -12,33 +12,26 @@ export default function App() {
 
   return (
     <React.Suspense fallback={<div className="p-6">Cargando Home…</div>}>
-      <div className="grid grid-rows-[auto_1fr_auto] grid-cols-[280px_1fr] gap-4 min-h-[calc(100dvh-2rem)]">
-        <section className="row-start-1 col-span-2 shadow">
-          <HeaderApp />
-        </section>
+      <div className="min-h-dvh bg-slate-100">
+        <div className="grid grid-cols-1 grid-rows-3 md:grid-rows-[auto_1fr_auto] lg:grid-rows-[auto_1fr_auto] md:grid-cols-[280px_1fr] lg:grid-cols-[280px_1fr] gap-x-6 min-h-[calc(100dvh-2rem)] ">
+          <section className="row-start-1 col-span-2 shadow">
+            <HeaderApp />
+          </section>
 
-        <section className="row-start-2 col-start-1 bg-base-100  rounded-box shadow overflow-auto">
-          <MenuApp />
-        </section>
+          <section className="row-start-2 col-start-1 bg-base-100  shadow overflow-auto">
+            <MenuApp />
+          </section>
 
-        <section className="row-start-2 col-start-2 flex flex-col gap-4">
-          <main className="bg-white/95 rounded-xl border shadow p-6 overflow-auto min-h-0">
-            <MainApp />
-          </main>
+          <section className="row-start-2 col-start-2 flex flex-col gap-4 justify-between">
+            <main className="pt-6 overflow-auto min-h-0">
+              <MainApp />
+            </main>
 
-          <footer className="bg-white/95 rounded-xl border shadow p-4">
-            <FooterApp />
-          </footer>
-        </section>
-        {/* <div className="grid grid-cols-[300px_1fr] gap-3 min-h-0">
-            <section className="grid grid-rows-[1fr_auto] gap-3 min-h-0">
-
-            
-
-             
-            </section>
+            <footer>
+              <FooterApp />
+            </footer>
+          </section>
         </div>
-         */}
       </div>
     </React.Suspense>
   );
