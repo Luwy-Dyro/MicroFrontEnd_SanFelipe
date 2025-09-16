@@ -13,7 +13,7 @@ export default function App() {
   return (
     <React.Suspense fallback={<div className="p-6">Cargando Home…</div>}>
       <div className="min-h-dvh bg-slate-100">
-        <div className="grid grid-cols-1 grid-rows-3 md:grid-rows-[auto_1fr_auto] lg:grid-rows-[auto_1fr_auto] md:grid-cols-[280px_1fr] lg:grid-cols-[280px_1fr] gap-x-6 min-h-[calc(100dvh-2rem)] ">
+        <div className="grid grid-cols-1 grid-rows-3 md:grid-rows-[auto_1fr_auto] lg:grid-rows-[auto_1fr_auto] md:grid-cols-[280px_1fr] lg:grid-cols-[280px_1fr] gap-x-6">
           <section className="row-start-1 col-span-2 shadow">
             <HeaderApp />
           </section>

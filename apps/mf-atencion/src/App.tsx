@@ -65,12 +65,12 @@ export default function AtencionApp() {
   return (
     <React.Suspense fallback={<div className="p-6">Cargando Atención…</div>}>
       <div className="min-h-dvh bg-slate-100">
-        <div className="grid grid-cols-1 grid-rows-3 md:grid-rows-[auto_1fr_auto] md:grid-cols-[280px_1fr] lg:grid-rows-[auto_1fr_auto] lg:grid-cols-[280px_1fr] gap-x-6 min-h-[calc(100dvh-2rem)]">
+        <div className="grid md:grid-rows-[auto_1fr_auto] md:grid-cols-[280px_1fr] lg:grid-rows-[auto_1fr_auto] lg:grid-cols-[280px_1fr] gap-x-6 min-h-[calc(100dvh-2rem)]">
           <section className="row-start-1 col-span-2 shadow">
             <HeaderApp />
           </section>
 
-          <section className="row-start-2 col-start-1 bg-base-100  shadow overflow-auto">
+          <section className="row-start-2 col-start-1 bg-base-100  shadow overflow-auto w-[280px]">
             <MenuApp />
           </section>
 

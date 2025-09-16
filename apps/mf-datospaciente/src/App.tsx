@@ -129,7 +129,7 @@ export default function App({ nroDocumento, initial }: Props) {
             aria-label="Desplegar"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="btn btn-circle bg-csf-azul border-0 btn-sm relative rounded-4xl"
+            className="btn btn-circle border-0 btn-sm relative rounded-4xl bg-csf-azul"
           >
             <i
               className={`fa-solid text-white ${
