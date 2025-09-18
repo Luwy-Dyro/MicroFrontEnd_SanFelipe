@@ -7,8 +7,8 @@ export default defineConfig({
    resolve: {
     dedupe: ['react', 'react-dom', 'react-router', 'react-router-dom'], 
   },
-    optimizeDeps: {
-    exclude: ['react','react-dom','react-router','react-router-dom'],
+  optimizeDeps: {
+   exclude: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
   },
   plugins: [
     react(),

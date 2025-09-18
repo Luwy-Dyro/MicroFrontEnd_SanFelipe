@@ -11,7 +11,7 @@ export default defineConfig({
   },
   
   optimizeDeps: {
-    exclude: ['react','react-dom','react-router','react-router-dom'],
+    exclude: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
   },
   plugins: [
     react(),

@@ -2,44 +2,48 @@
 
 Resumen rápido: este monorepo contiene varios microfrontends (MF) y un shell (host). Cada MF habitualmente se ejecuta en su propio puerto en dev (Vite). A continuación está el árbol de apps y los puertos confirmados / recomendaciones para desarrollo local.
 
-## Estructura (apps/)
+# clinicsf-frontapp — Monorepo (Resumen rápido)
+
+Este README lista los microfrontends (MF) del monorepo y los puertos usados en desarrollo, además de comandos útiles y notas de despliegue.
+
+## Árbol de apps (ubicación: apps/)
 - apps/
-  - shell/ ...................... Host (Shell) — puerto: 5000 (confirmado)
-  - mf-login/ ................... Microfrontend Login — puerto: 5001 (confirmado)
-  - mf-home/ .................... Microfrontend Home — puerto: 5102 (confirmado)
-  - mf-web-header/ .............. Microfrontend Web Header — puerto sugerido: 5103
-  - mf-web-main/ ................ Microfrontend Web Main — puerto sugerido: 5104
-  - mf-web-menu/ ................ Microfrontend Web Menu — puerto sugerido: 5105
-  - mf-web-footer/ .............. Microfrontend Web Footer — puerto sugerido: 5106
-  - mf-atencion/ ................ (otro MF) — puerto a definir
-  - mf-bases/ ................... (librería / MF) — puerto a definir
-  - mf-datospaciente/ ........... (otro MF) — puerto a definir
+  - shell/ ...................... Host (Shell) — puerto dev: 5000
+  - mf-login/ ................... Microfrontend Login — puerto dev: 5001
+  - mf-home/ .................... Microfrontend Home — puerto dev: 5102
+  - mf-web-header/ .............. Microfrontend Header — puerto dev: 5103 (sugerido)
+  - mf-web-main/ ................ Microfrontend Main — puerto dev: 5104 (sugerido)
+  - mf-web-menu/ ................ Microfrontend Menu — puerto dev: 5105 (sugerido)
+  - mf-web-footer/ .............. Microfrontend Footer — puerto dev: 5106 (sugerido)
+  - mf-atencion/ ................ Microfrontend Atención — preview / serve:dist puerto: 5202
+  - mf-datospaciente/ ........... Microfrontend DatosPaciente — puerto a configurar
+  - mf-bases/ ................... Librería / MF — puerto a configurar
+  
+> Nota: algunos puertos son los confirmados durante pruebas; otros son sugeridos y deben reconciliarse con cada `apps/<app>/vite.config.ts`.
 
-> Nota: los puertos con "confirmado" se obtuvieron de los dev servers que ejecutaste. Los puertos "sugeridos" se usan en ejemplos/configs y conviene alinearlos con cada vite.config.ts.
+## Remote entry filename
+- Comprueba en cada `vite.config.ts` el valor `filename` del plugin `federation`.
+  - Comúnmente usado en este repo en dev: `assets/remoteEntry.js`
+  - Asegúrate que el shell apunte a la misma URL (`http://localhost:<port>/assets/remoteEntry.js`) o a `/remoteEntry.js` si esa es la configuración.
 
-## URLs de desarrollo (ejemplos)
-- Shell: http://localhost:5000
-- Login: http://localhost:5001
-- Home:  http://localhost:5102
-- Header: http://localhost:5103
-- Main: http://localhost:5104
-- Menu: http://localhost:5105
-- Footer: http://localhost:5106
+## Comandos por app (desarrollo local)
+- Instalar deps (desde la raíz, usa workspaces):
+  npm install
+- Levantar un microfrontend individual:
+  cd apps/mf-login
+  npm run dev
+- Levantar el shell:
+  cd apps/shell
+  npm run dev
 
-Asegúrate de que los remotes del shell apunten a las URLs exactas (incluyendo `/remoteEntry.js` o `/assets/remoteEntry.js` según tu filename en cada vite.config):
+## Scripts útiles (ejemplos para añadir al package.json raíz)
+- Ejecutar build en todas las apps (usar paths reales `./apps/<app>`):
+  "build-all": "concurrently \"npm --prefix ./apps/mf-home run build\" \"npm --prefix ./apps/mf-login run build\" \"npm --prefix ./apps/mf-web-main run build\" \"npm --prefix ./apps/mf-web-menu run build\" \"npm --prefix ./apps/mf-web-header run build\" \"npm --prefix ./apps/mf-web-footer run build\" \"npm --prefix ./apps/mf-datospaciente run build\" \"npm --prefix ./apps/mf-bases run build\" \"npm --prefix ./apps/mf-atencion run build\""
+- Servir todos los dist (después de `build-all`):
+  "serve-all": "concurrently \"npm --prefix ./apps/mf-home run serve:dist\" \"npm --prefix ./apps/mf-login run serve:dist\" \"npm --prefix ./apps/mf-web-main run serve:dist\" \"npm --prefix ./apps/mf-web-menu run serve:dist\" \"npm --prefix ./apps/mf-web-header run serve:dist\" \"npm --prefix ./apps/mf-web-footer run serve:dist\" \"npm --prefix ./apps/mf-datospaciente run serve:dist\" \"npm --prefix ./apps/mf-bases run serve:dist\" \"npm --prefix ./apps/mf-atencion run serve:dist\""
 
-Ejemplo (apps/shell/vite.config.ts -> remotes):
-````typescript
-remotes: {
-  login: 'http://localhost:5001/assets/remoteEntry.js',
-  home:  'http://localhost:5102/assets/remoteEntry.js',
-  web_header: 'http://localhost:5103/assets/remoteEntry.js',
-  web_main:   'http://localhost:5104/assets/remoteEntry.js',
-  web_menu:   'http://localhost:5105/assets/remoteEntry.js',
-  web_footer: 'http://localhost:5106/assets/remoteEntry.js',
-}
+(Instala `concurrently` como devDependency en la raíz si usarás estos scripts.)
 
-````
 
 
 
@@ -52,7 +56,7 @@ npm install
 SHELL
 npm run dev
 
-MF
+MicroFrontEnds
 npm run serve:dist
 ````
 
