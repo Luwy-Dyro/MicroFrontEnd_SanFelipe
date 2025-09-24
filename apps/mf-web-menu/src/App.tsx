@@ -48,7 +48,7 @@ export default function MenuApp({ perfil = 'admin' }: MenuAppProps) {
 
   return (
     <>
-    <aside className="flex flex-col h-full w-full p-2 min-h-0 bg-csf-azul text-primary-content">
+    <aside className="min-w-[280px] flex flex-col h-full w-full p-2 min-h-0 bg-csf-azul text-primary-content">
   
       {loading && (
         <ul className="menu overflow-auto py-5 animate-pulse">

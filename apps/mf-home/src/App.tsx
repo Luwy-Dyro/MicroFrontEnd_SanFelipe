@@ -7,22 +7,28 @@ const MenuApp = React.lazy(() => import("web_menu/MenuApp"));
 const MainApp = React.lazy(() => import("web_main/MainApp"));
 const FooterApp = React.lazy(() => import("web_footer/FooterApp"));
 
+
 export default function App() {
   ensureStyle(new URL(cssHref, import.meta.url).toString());
 
   return (
     <React.Suspense fallback={<div className="p-6">Cargando Home…</div>}>
-      <div className="min-h-dvh bg-slate-100">
-        <div className="grid grid-cols-1 grid-rows-3 md:grid-rows-[auto_1fr_auto] lg:grid-rows-[auto_1fr_auto] md:grid-cols-[280px_1fr] lg:grid-cols-[280px_1fr] gap-x-6">
-          <section className="row-start-1 col-span-2 shadow">
-            <HeaderApp />
+      <div className="bg-slate-100">
+   
+        <div className="min-h-dvh grid grid-cols-1 md:grid-cols-[auto_1fr] md:grid-rows-[auto_1fr] gap-x-6 content-start">
+          
+       
+          <section className="col-start-1 md:col-span-2 shadow">
+           <HeaderApp />
+           
+
           </section>
 
-          <section className="row-start-2 col-start-1 bg-base-100  shadow overflow-auto">
+          <section className="col-start-1 row-start-2 md:self-stretch h-full bg-base-100 shadow ">
             <MenuApp />
           </section>
 
-          <section className="row-start-2 col-start-2 flex flex-col gap-4 justify-between">
+         <section className="col-start-1 row-start-3 md:col-start-2 md:row-start-2 grid grid-rows-[1fr_auto] min-h-0">
             <main className="pt-6 overflow-auto min-h-0">
               <MainApp />
             </main>
